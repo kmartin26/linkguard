@@ -7,6 +7,7 @@ LinkGuard is accessible online here : https://linkguard.net
 ## Maintainers
 
 LinkGuard is actually maintained only by [@kmartin](https://twitter.com/_ValpeX)
+
 If you ready to help to improve this tool, just tweet him !
 
 ## Security Vulnerabilities
