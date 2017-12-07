@@ -27,13 +27,41 @@ body > .container {
     padding: 60px 15px 0;
 }
 
+.navbar-inverse {
+    border-color: #3ae73b;
+    border-bottom-width: medium;
+}
+
+.navbar-brand {
+    font-family: 'Patua One', cursive;
+    font-size: 40px;
+    color: whitesmoke!important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #3ae73b;
+}
+
 .container .text-muted {
     margin: 20px 0;
+}
+
+.footer {
+    background-color: #222;
+    margin-top: 20px;
 }
 
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.footer > .container > .text-white {
+    color: whitesmoke;
 }
 
 code {

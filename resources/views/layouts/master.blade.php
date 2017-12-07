@@ -12,11 +12,13 @@
     <title>@yield('title') - LinkGuard</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,7 +39,7 @@
 
 <body>
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -86,7 +88,7 @@
         <p class="text-center">This service is not intended to be used for illegal purpose!</p>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" style="padding-bottom: 15px;">
             <!-- LG - After Content -->
             <ins class="adsbygoogle"
                  style="display:block"
@@ -101,8 +103,8 @@
 </div>
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">
-            Copyright &#xA9; {{ date('Y') }} - LinkGuard
+        <p class="text-muted text-center text-white">
+            Copyright &#xA9; {{ date('Y') }} LinkGuard - <span style="font-weight:bold;">{{ round((microtime(true) - LARAVEL_START) * 1000) }} ms</span>
         </p>
     </div>
 </footer>
