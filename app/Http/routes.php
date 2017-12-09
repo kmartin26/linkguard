@@ -51,14 +51,14 @@ Route::post('contact', [
 ]);
 
 // DMCA form page
-Route::get('contact', [
+Route::get('dmca', [
     'as' => 'front.dmca.get',
-    'uses' => 'ContactController@create',
+    'uses' => 'DmcaController@create',
 ]);
 
-Route::post('contact', [
+Route::post('dmca', [
     'as' => 'front.dmca.post',
-    'uses' => 'ContactController@store',
+    'uses' => 'DmcaController@store',
 ]);
 
 // Link Routes
