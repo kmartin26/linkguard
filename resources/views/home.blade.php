@@ -22,7 +22,7 @@
                     <textarea class="form-control" name="urls" id="urls" rows="10">{{ old('urls') }}</textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                 </div>
                 {{ csrf_field() }}
             </form>
