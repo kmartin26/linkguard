@@ -20,9 +20,9 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         @if($data['data']['urls_nb'] === 1)
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display {{ $data['data']['urls_nb'] }} protected link!
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Unlocked {{ $data['data']['urls_nb'] }} url!
                         @else
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display {{ $data['data']['urls_nb'] }} protected links!
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Unlocked {{ $data['data']['urls_nb'] }} urls!
                         @endif
                     </div>
                     <div class="panel-body">
@@ -49,7 +49,7 @@
             @else
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display protected links!
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Unlock protected urls!
                     </div>
                     <div class="panel-body">
                         <form action="{{ url('/') }}/{{ $id }}/show" method="post">

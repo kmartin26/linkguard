@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Link;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class CoreController extends Controller
@@ -15,21 +16,26 @@ class CoreController extends Controller
     {
         /*
          * Validating urls input
-         * Return error: NO_urlS_PARAM_PROVIDED
+         * Return error: NO_URLS_PARAM_PROVIDED
          */
         $validator = Validator::make($request->all(), [
             'urls' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'NO_URLS_PARAM_PROVIDED',
-                    'message' => 'No urls parameter provided'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - NO_URLS_PARAM_PROVIDED';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'NO_URLS_PARAM_PROVIDED',
+                        'message' => 'No urls parameter provided'
+                    ]
+                ]);
+            }
+
         }
 
         /*
@@ -62,14 +68,18 @@ class CoreController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'NOT_AN_URL',
-                    'message' => 'At least one URL is invalid'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - NOT_AN_URL';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'NOT_AN_URL',
+                        'message' => 'At least one URL is invalid'
+                    ]
+                ]);
+            }
         }
 
         /*
@@ -88,25 +98,31 @@ class CoreController extends Controller
             'delete_code' => $delete_code,
         ]);
 
+        $link = url('/') . '/' . $dbinsert['id'];
+
         /*
          * Insert in DB successful
          * Return 200 response with url generated
          */
-        return response()->json([
-            'data' => [
-                'id' => $dbinsert['id'],
-                'urls' => $urls_array,
-                'urls_nb' => $urls_count,
-                'link' => url('/').'/'.$dbinsert['id'],
-                'client_ip' => $request->ip(),
-                'delete_code' => $delete_code,
-            ],
-            'status' => [
-                'code' => 200,
-                'txt' => 'OK',
-                'message' => 'Successful operation'
-            ]
-        ]);
+        if ($request->get('format') === 'txt') {
+            return $link;
+        } else {
+            return response()->json([
+                'data' => [
+                    'id' => $dbinsert['id'],
+                    'urls' => $urls_array,
+                    'urls_nb' => $urls_count,
+                    'link' => $link,
+                    'client_ip' => $request->ip(),
+                    'delete_code' => $delete_code,
+                ],
+                'status' => [
+                    'code' => 200,
+                    'txt' => 'OK',
+                    'message' => 'Successful operation'
+                ]
+            ]);
+        }
     }
 
     /**
@@ -123,14 +139,18 @@ class CoreController extends Controller
          * Return error message : NO_url_ID
          */
         if (empty($id)) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'NO_url_ID',
-                    'message' => 'No url id provided'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - NO_URL_ID';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'NO_URL_ID',
+                        'message' => 'No url id provided'
+                    ]
+                ]);
+            }
         }
 
         /*
@@ -138,14 +158,18 @@ class CoreController extends Controller
          * Return error message : NO_DELETE_CODE
          */
         if (empty($delete_code)) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'NO_DELETE_CODE',
-                    'message' => 'No delete code provided'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - NO_DELETE_CODE';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'NO_DELETE_CODE',
+                        'message' => 'No delete code provided'
+                    ]
+                ]);
+            }
         }
 
         /*
@@ -158,14 +182,18 @@ class CoreController extends Controller
          * Return error message : LINK_ALREADY_DELETED
          */
         if ($db->first()->deleted === 1) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'LINK_ALREADY_DELETED',
-                    'message' => 'Link is already deleted'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - LINK_ALREADY_DELETED';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'LINK_ALREADY_DELETED',
+                        'message' => 'Link is already deleted'
+                    ]
+                ]);
+            }
         }
 
         /*
@@ -173,14 +201,18 @@ class CoreController extends Controller
          * Return error message : WRONG_DELETE_CODE
          */
         if ($db->first()->delete_code != $delete_code) {
-            return response()->json([
-                'data' => NULL,
-                'status' => [
-                    'code' => 403,
-                    'txt' => 'WRONG_DELETE_CODE',
-                    'message' => 'Wrong delete code provided'
-                ]
-            ]);
+            if ($request->get('format') === 'txt') {
+                return '403 - WRONG_DELETE_CODE';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'WRONG_DELETE_CODE',
+                        'message' => 'Wrong delete code provided'
+                    ]
+                ]);
+            }
         }
 
         /*
@@ -190,14 +222,18 @@ class CoreController extends Controller
          */
         Link::where('id', $id)->update(['deleted' => 1, 'deleted_reason' => 'user']);
 
-        return response()->json([
-            'data' => NULL,
-            'status' => [
-                'code' => 200,
-                'txt' => 'OK',
-                'message' => 'Successful operation'
-            ]
-        ]);
+        if ($request->get('format') === 'txt') {
+            return 'OK';
+        } else {
+            return response()->json([
+                'data' => NULL,
+                'status' => [
+                    'code' => 200,
+                    'txt' => 'OK',
+                    'message' => 'Successful operation'
+                ]
+            ]);
+        }
     }
 
     /*
