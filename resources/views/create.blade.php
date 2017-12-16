@@ -68,7 +68,7 @@
 
 @section('customJs')
     <!-- CDN clipboard.js -->
-    <script src="{{ asset('js/clipboard.min.js') }}"></script>
+    <script async src="{{ asset('js/clipboard.min.js') }}"></scriptasync>
     <script>
         $('button').tooltip({
             trigger: 'click',

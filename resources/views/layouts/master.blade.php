@@ -102,8 +102,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script async src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script async src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @hasSection ('title')
     @yield('customJs')
