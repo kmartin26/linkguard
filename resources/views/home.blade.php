@@ -18,7 +18,7 @@
 
             <form action="{{ url('create') }}" method="post">
                 <div class="form-group">
-                    <label for="urls">Your URLS (1 per line)</label>
+                    <label for="urls">Your URLs (1 per line)</label>
                     <textarea class="form-control" name="urls" id="urls" rows="10">{{ old('urls') }}</textarea>
                 </div>
                 <div class="form-group">
