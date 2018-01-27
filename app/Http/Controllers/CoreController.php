@@ -83,6 +83,36 @@ class CoreController extends Controller
         }
 
         /*
+         * Validate client IP
+         * Return error message : NOT_VALID_IP
+         */
+        $validator = Validator::make($request->all(), [
+            'client_ip' => 'ip',
+        ]);
+
+        if ($validator->fails()) {
+            if ($request->get('format') === 'txt') {
+                return '403 - NOT_A_VALID_IP';
+            } else {
+                return response()->json([
+                    'data' => NULL,
+                    'status' => [
+                        'code' => 403,
+                        'txt' => 'NOT_A_VALID_IP',
+                        'message' => 'Not a valid ip'
+                    ]
+                ]);
+            }
+
+        }
+
+        if (!empty($request->get('client_ip'))) {
+            $client_ip = $request->get('client_ip');
+        } else {
+            $client_ip = $request->ip();
+        }
+
+        /*
          * Generate a delete code
          */
         $delete_code = $this->generateRandomString();
@@ -94,7 +124,7 @@ class CoreController extends Controller
         $dbinsert = Link::create([
             'urls' => $urls,
             'urls_nb' => $urls_count,
-            'client_ip' => $request->ip(),
+            'client_ip' => $client_ip,
             'delete_code' => $delete_code,
         ]);
 
