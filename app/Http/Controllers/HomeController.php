@@ -55,7 +55,9 @@ class HomeController extends Controller
          * Curl request API
          */
         $response = Curl::to(url('api/create'))
-            ->withData(['urls' => $comma_separated])
+            ->withData(['urls' => $comma_separated,
+                        'client_ip' => $request->ip()
+                        ])
             ->post();
 
         /*
