@@ -28,7 +28,7 @@
                     <div class="panel-body">
                         @foreach($data['data']['urls'] as $urls)
                             <p class="text-center show-link">
-                                <a href="{{ $urls }}">{{ $urls }}</a>
+                                <a href="{{ urldecode($urls) }}">{{ urldecode($urls) }}</a>
                             </p>
                         @endforeach
                     </div>

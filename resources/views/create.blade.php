@@ -40,7 +40,7 @@
                         @foreach($data['data']['urls'] as $key => $protected_link)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $protected_link }}</td>
+                                <td>{{ urldecode($protected_link) }}</td>
                             </tr>
                         @endforeach
                         </tbody>

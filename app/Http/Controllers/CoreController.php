@@ -47,12 +47,7 @@ class CoreController extends Controller
          * Make an array by exploding $urls
          * Filter empty strings
          */
-        $urls_array = array_filter(explode(',', $urls_request));
-
-        /*
-         * Store urls in clean string
-         */
-        $urls = implode(',', $urls_array);
+        $urls_array = array_filter(explode('|', $urls_request));
 
         /*
          * Array length
@@ -118,11 +113,18 @@ class CoreController extends Controller
         $delete_code = $this->generateRandomString();
 
         /*
+         * Encode urls to store in database 
+         */
+        for ($i=0; $i < count($urls_array); $i++) { 
+            $urls_array[$i] = urlencode($urls_array[$i]);
+        }
+
+        /*
          * Validation successful
          * Insert record in DB
          */
         $dbinsert = Link::create([
-            'urls' => $urls,
+            'urls' => serialize($urls_array),
             'urls_nb' => $urls_count,
             'client_ip' => $client_ip,
             'delete_code' => $delete_code,

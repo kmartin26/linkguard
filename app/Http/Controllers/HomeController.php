@@ -47,15 +47,15 @@ class HomeController extends Controller
         $urls_array = array_filter(explode("\r\n", $request->get('urls')));
 
         /*
-         * Make comma separated string of urls
+         * Make separated string of urls
          */
-        $comma_separated = implode(",", $urls_array);
+        $urls_separated = implode('|', $urls_array);
 
         /*
          * Curl request API
          */
         $response = Curl::to(url('api/create'))
-            ->withData(['urls' => $comma_separated,
+            ->withData(['urls' => $urls_separated,
                         'client_ip' => $request->ip()
                         ])
             ->post();
@@ -146,6 +146,8 @@ class HomeController extends Controller
          */
         $db = Link::where('id', $id)->get();
 
+        $urls_array = unserialize($db->first()->urls);
+
         /*
          * Check if link is deleted
          */
@@ -160,7 +162,7 @@ class HomeController extends Controller
                 ]
             ];
         } else {
-            $urls = explode(',', $db->first()->urls);
+            $urls = $urls_array;
             $data = [
                 'data' => [
                     'id' => $id,
