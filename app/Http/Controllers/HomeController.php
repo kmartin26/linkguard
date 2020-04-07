@@ -54,10 +54,12 @@ class HomeController extends Controller
         /*
          * Curl request API
          */
-        $response = Curl::to(url('api/create'))
-            ->withData(['urls' => $urls_separated,
-                        'client_ip' => $request->ip()
-                        ])
+        $response = Curl::to(route('api.create'))
+            ->withData([
+                'urls' => $urls_separated,
+                'client_ip' => $request->ip()
+            ])
+            ->enableDebug('/Users/kmartin/Web/linkguard/curl.txt')
             ->post();
 
         /*
