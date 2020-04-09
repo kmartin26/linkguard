@@ -59,7 +59,7 @@ class HomeController extends Controller
                 'urls' => $urls_separated,
                 'client_ip' => $request->ip()
             ])
-            ->enableDebug('/Users/kmartin/Web/linkguard/curl.txt')
+            // ->enableDebug('/Users/kmartin/Web/linkguard/curl.txt')
             ->post();
 
         /*
