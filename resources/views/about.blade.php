@@ -33,8 +33,7 @@
                 <h3>Free to use?</h3>
                 <hr>
                 <p class="text-justify">
-                    &emsp;&emsp;&emsp;<b>YES SURE!</b> We maintain this service with soft ads. So, if you have AdBlock can you please disable it? &#x1F61A; <br>
-                    If you still want to use your AD Blocker, maybe you could make a Bitcoin donation? &#x1F60D; <span class="label label-default">1A3qPKpfnsFBogu4qMyPoiByy1t3iL2dsY</span>
+                    &emsp;&emsp;&emsp;<b>YES SURE!</b> The service is maintained with own funds. However if you wish to support us, do not hesitate to contact us via the contact form.
                 </p>
                 <br><br>
             </div>
