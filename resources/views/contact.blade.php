@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <p class="lead text-center">Question? Feature? Idea? Ask us everything with this contact form!</p>
+            <p class="lead text-center">Question? Feature? Idea?<br>Ask us everything.</p>
 
             <div class="col-md-8 col-md-offset-2">
                 @if (count($errors) > 0)
