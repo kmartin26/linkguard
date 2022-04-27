@@ -11,24 +11,16 @@
 
     <title>@yield('title') - LinkGuard</title>
 
-    <!-- App CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-80768182-5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-80768182-5');
-    </script>
-
+    <!-- ANALYTICS -->
+    <script></script>
 </head>
 
 <body>
-<!-- Fixed navbar -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -48,10 +40,10 @@
                 <li><a href="{{ url('contact') }}">Contact</a></li>
                 <li><a href="{{ url('dmca') }}">DMCA</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
-<!-- Begin page content -->
+<!-- PAGE CONTENT -->
 <div class="container">
     @hasSection('header')
         @yield('header')
@@ -62,15 +54,7 @@
     @endif
     <div class="row" style="padding-bottom:15px;">
         <div class="col-md-8 col-md-offset-2">
-            <!-- LG - Before Content -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-5282412481689796"
-                 data-ad-slot="7937990610"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <!-- BANNER BEFORE CONTENT -->
         </div>
     </div>
     @yield('content')
@@ -79,15 +63,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="padding-bottom: 15px;">
-            <!-- LG - After Content -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-5282412481689796"
-                 data-ad-slot="9674524369"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <!-- BANNER AFTER CONTENT -->
         </div>
     </div>
 </div>
@@ -99,12 +75,9 @@
     </div>
 </footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- SCRIPTS -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @hasSection ('title')
     @yield('customJs')
 @else
