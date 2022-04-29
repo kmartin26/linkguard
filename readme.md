@@ -2,14 +2,14 @@
 
 LinkGuard is an online free tool to easily protect your links from bots with the powerful Google reCAPTCHA !
 
-LinkGuard is accessible online here : https://linkguard.net
+LinkGuard is accessible online here : https://linkguard.fr
 
 
 ## Maintainers
 
-LinkGuard is actually maintained only by [@kmartin](https://twitter.com/_ValpeX)
+LinkGuard is actually maintained by [@kmartin](https://twitter.com/_ValpeX)
 
-If you ready to help to improve this tool, just tweet him!
+If you ready to help to improve this tool, just ask!
 
 
 ## Security Vulnerabilities
