@@ -54,8 +54,8 @@ class DmcaController extends Controller
                 'user_message' => $request->get('inputMessage'),
             ), function($message) use ($request)
             {
-                $message->from('no-reply@linkguard.net', 'LinkGuard');
-                $message->to('hello@kmartin.io', 'Kévin Martin');
+                $message->from(config('mail.from.address'), config('mail.from.name'));
+                $message->to(config('mail.to.address'), config('mail.to.name'));
                 $message->subject('DMCA Request');
                 $message->replyTo($request->get('inputEmail'), $request->get('inputName'));
             });

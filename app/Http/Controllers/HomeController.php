@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Link;
-use Illuminate\Http\Request;
-
+use App\Models\Link;
 use App\Http\Requests;
+
+use Illuminate\Http\Request;
+use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use Ixudra\Curl\Facades\Curl;
 
 class HomeController extends Controller
 {
@@ -59,7 +59,6 @@ class HomeController extends Controller
                 'urls' => $urls_separated,
                 'client_ip' => $request->ip()
             ])
-            // ->enableDebug('/Users/kmartin/Web/linkguard/curl.txt')
             ->post();
 
         /*
@@ -68,21 +67,20 @@ class HomeController extends Controller
         $responseArray = json_decode($response, true);
 
         /*
-         * Check for API errors
+         * Check API response
          */
-        if ($responseArray['status']['code'] === 403) {
-            if ($responseArray['status']['txt'] === 'NO_LINKS_PARAM_PROVIDED') {
-                return redirect()->route('front.index')->withInput()->withErrors($responseArray['status']['message']);
-            } elseif ($responseArray['status']['txt'] === 'NOT_AN_URL') {
-                return redirect()->route('front.index')->withInput()->withErrors($responseArray['status']['message']);
+        if (!empty($responseArray)) {
+            if ($responseArray['status']['code'] === 403) {
+                if ($responseArray['status']['txt'] === 'NO_LINKS_PARAM_PROVIDED') {
+                    return redirect()->route('front.index')->withInput()->withErrors($responseArray['status']['message']);
+                } elseif ($responseArray['status']['txt'] === 'NOT_AN_URL') {
+                    return redirect()->route('front.index')->withInput()->withErrors($responseArray['status']['message']);
+                }
             }
-        }
-
-        /*
-         * If API success return info to user
-         */
-        if ($responseArray['status']['code'] === 200) {
-            return view('create')->with('data', $responseArray);
+    
+            if ($responseArray['status']['code'] === 200) {
+                return view('create')->with('data', $responseArray);
+            }
         }
 
         return redirect()->route('front.index')->withInput()->withErrors('Something wrong happened, please try again later!');

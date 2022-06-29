@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Link;
+use App\Models\Link;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;

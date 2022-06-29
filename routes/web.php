@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DmcaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [
-    'as' => 'front.index',
-    'uses' => 'HomeController@index',
-]);
+Route::get('/', [HomeController::class,'index',
+])->name('front.index');
 
 // About page
 Route::get('about', function (){
@@ -24,53 +25,26 @@ Route::get('about', function (){
 });
 
 // Contact form page
-Route::get('contact', [
-    'as' => 'front.contact.get',
-    'uses' => 'ContactController@create',
-]);
+Route::get('contact', [ContactController::class, 'create'])->name('front.contact.get');
 
-Route::post('contact', [
-    'as' => 'front.contact.post',
-    'uses' => 'ContactController@store',
-]);
+Route::post('contact', [ContactController::class, 'store'])->name('front.contact.post');
 
 // DMCA form page
-Route::get('dmca', [
-    'as' => 'front.dmca.get',
-    'uses' => 'DmcaController@create',
-]);
+Route::get('dmca', [DmcaController::class, 'create'])->name('front.dmca.get');
 
-Route::post('dmca', [
-    'as' => 'front.dmca.post',
-    'uses' => 'DmcaController@store',
-]);
+Route::post('dmca', [DmcaController::class, 'store'])->name('front.dmca.post');
 
 // Link Routes
-Route::post('create', [
-    'as' => 'front.create',
-    'uses' => 'HomeController@create',
-]);
+Route::post('create', [HomeController::class, 'create'])->name('front.create');
 
 Route::get('create', function () {
     return redirect()->route('front.index');
 });
 
-Route::get('{id}/delete', [
-    'as' => 'front.delete.get',
-    'uses' => 'HomeController@getDelete',
-]);
+Route::get('{id}/delete', [HomeController::class, 'getDelete'])->name('front.delete.get');
 
-Route::post('{id}/delete', [
-    'as' => 'front.delete.post',
-    'uses' => 'HomeController@postDelete',
-]);
+Route::post('{id}/delete', [HomeController::class, 'postDelete'])->name('front.delete.post');
 
-Route::get('{id}', [
-    'as' => 'front.show.get',
-    'uses' => 'HomeController@getShow',
-]);
+Route::get('{id}', [HomeController::class, 'getShow'])->name('front.show.get');
 
-Route::match(['get','post'], '{id}/show', [
-    'as' => 'front.show.post',
-    'uses' => 'HomeController@postShow',
-]);
+Route::match(['get','post'], '{id}/show', [HomeController::class, 'postShow'])->name('front.show.post');

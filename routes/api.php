@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::match(['get','post'], 'create', [
-    'as' => 'api.create',
-    'uses' => 'CoreController@create',
-]);
+Route::match(['get','post'], 'create', [CoreController::class, 'create'])->name('api.create');
 
-Route::delete('delete', [
-    'as' => 'api.delete',
-    'uses' => 'CoreController@delete',
-]);
+Route::delete('delete', [CoreController::class, 'delete'])->name('api.delete');
